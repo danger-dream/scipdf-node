@@ -1,7 +1,10 @@
-import { existsSync, readFileSync } from 'node:fs';
-import { DOMParser, XMLSerializer } from 'xmldom';
-import { useNamespaces } from 'xpath';
-export async function ScipdfParser(pdf_src, options) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ScipdfParser = void 0;
+const node_fs_1 = require("node:fs");
+const xmldom_1 = require("xmldom");
+const xpath_1 = require("xpath");
+async function ScipdfParser(pdf_src, options) {
     if (!pdf_src) {
         throw new Error('file not found');
     }
@@ -27,8 +30,8 @@ export async function ScipdfParser(pdf_src, options) {
             const resp = await fetch(pdf_src, { method: 'GET' });
             buf = Buffer.from(await resp.arrayBuffer());
         }
-        else if (existsSync(pdf_src)) {
-            buf = readFileSync(pdf_src);
+        else if ((0, node_fs_1.existsSync)(pdf_src)) {
+            buf = (0, node_fs_1.readFileSync)(pdf_src);
         }
         else {
             try {
@@ -61,6 +64,7 @@ export async function ScipdfParser(pdf_src, options) {
     }
     throw new Error('failed to parse');
 }
+exports.ScipdfParser = ScipdfParser;
 function parseTEIXml(xml, options) {
     const article = {
         title: '',
@@ -75,8 +79,8 @@ function parseTEIXml(xml, options) {
     let ind1 = xml.indexOf('<teiHeader');
     if (ind1 < 0)
         throw new Error('failed to parse');
-    let doc = new DOMParser().parseFromString(xml.substring(ind1, xml.indexOf('</teiHeader>') + 12));
-    const select = useNamespaces({});
+    let doc = new xmldom_1.DOMParser().parseFromString(xml.substring(ind1, xml.indexOf('</teiHeader>') + 12));
+    const select = (0, xpath_1.useNamespaces)({});
     const selectSingle = (exp, attr) => {
         const el = select(exp, doc, true);
         if (el) {
@@ -94,7 +98,7 @@ function parseTEIXml(xml, options) {
     if (ind1 < 0) {
         return article;
     }
-    doc = new DOMParser().parseFromString(xml.substring(ind1, xml.indexOf('</text>') + 7));
+    doc = new xmldom_1.DOMParser().parseFromString(xml.substring(ind1, xml.indexOf('</text>') + 7));
     let foot_replace_text = '';
     for (const item of selectNodes('//body/*')) {
         try {
@@ -151,7 +155,7 @@ function parseTEIXml(xml, options) {
     }
     for (const node of selectNodes('//listBibl/biblStruct')) {
         try {
-            doc = new DOMParser().parseFromString(new XMLSerializer().serializeToString(node));
+            doc = new xmldom_1.DOMParser().parseFromString(new xmldom_1.XMLSerializer().serializeToString(node));
             let title = selectSingle('//title[@level="a"]') || selectSingle('//title[@level="m"]');
             if (!title)
                 continue;
