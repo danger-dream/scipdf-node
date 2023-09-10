@@ -1,8 +1,10 @@
 {
 	"name": "scipdf-node",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "node implementation of python scipdf_parser package",
 	"type": "commonjs",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/exaggerated-dream/scipdf-node.git"
