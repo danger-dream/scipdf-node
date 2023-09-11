@@ -1,6 +1,6 @@
 {
 	"name": "scipdf-node",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "node implementation of python scipdf_parser package",
 	"type": "commonjs",
 	"main": "dist/index.js",
@@ -26,7 +26,6 @@
 	},
 	"homepage": "https://github.com/exaggerated-dream/scipdf-node#readme",
 	"dependencies": {
-		"form-data": "4.0.0",
 		"xmldom": "0.6.0",
 		"xpath": "0.0.33"
 	},

@@ -47,12 +47,14 @@ async function ScipdfParser(pdf_src, options) {
     body.set('input', blob, 'temp.pdf');
     body.set('consolidateHeader', '1');
     body.set('consolidateCitations', '0');
+    let grobid_url = url + '/api/processFulltextDocument';
+    if (options.proxy) {
+        const to_url = new URL(url);
+        grobid_url = options.proxy + '/api/processFulltextDocument?to-host=' + to_url.host;
+    }
     const retry = options.retry ?? 5;
     for (let index = 0; index < retry; index++) {
-        const resp = await fetch(url + '/api/processFulltextDocument', {
-            method: 'POST',
-            body: body
-        });
+        const resp = await fetch(grobid_url, { method: 'POST', body: body });
         if (resp.status === 503) {
             await (new Promise(r => setTimeout(r, 500)));
             continue;

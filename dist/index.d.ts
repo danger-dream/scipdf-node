@@ -29,6 +29,11 @@ interface ScipdfOptions {
      * @default 5
      */
     retry?: number;
+    /**
+     *  proxy url
+     * @default undefined
+     */
+    proxy?: string;
 }
 export interface ScipdfArticleSection {
     n: string;
