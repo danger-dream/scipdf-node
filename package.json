@@ -7,13 +7,13 @@
 	"types": "dist/index.d.ts",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/exaggerated-dream/scipdf-node.git"
+		"url": "git+https://github.com/danger-dream/scipdf-node.git"
 	},
 	"scripts": {
 		"build": "tsc",
 		"test": "node test.ts"
 	},
-	"author": "exaggerated-dream",
+	"author": "danger-dream",
 	"license": "MIT",
 	"keywords": [
 		"scipdf",
@@ -22,9 +22,9 @@
 		"pdf parser"
 	],
 	"bugs": {
-		"url": "https://github.com/exaggerated-dream/scipdf-node/issues"
+		"url": "https://github.com/danger-dream/scipdf-node/issues"
 	},
-	"homepage": "https://github.com/exaggerated-dream/scipdf-node#readme",
+	"homepage": "https://github.com/danger-dream/scipdf-node#readme",
 	"dependencies": {
 		"xmldom": "0.6.0",
 		"xpath": "0.0.33"
