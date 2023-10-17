@@ -1,6 +1,6 @@
 {
 	"name": "scipdf-node",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"description": "node implementation of python scipdf_parser package",
 	"type": "commonjs",
 	"main": "dist/index.js",
@@ -11,7 +11,8 @@
 	},
 	"scripts": {
 		"build": "tsc",
-		"test": "node test.ts"
+		"test": "node test.ts",
+		"publish": "npm publish"
 	},
 	"author": "danger-dream",
 	"license": "MIT",
